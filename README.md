@@ -80,7 +80,7 @@ Bkz. [`video-script.md`](./video-script.md) — ekran kaydı değil, anlatımlı
 - **Ad Soyad:** Melike Tıkır
 - **Öğrenci No:** 231118022
 - **E-posta:** meliketikir012@gmail.com
-- **GitHub:** <!-- repo linkini buraya ekle -->
+- **GitHub:** https://github.com/iwellike/icerik-kocu
 
 ## 📄 Lisans
 
