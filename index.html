@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>İçerik Koçu</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="phone">
+
+  <!-- EKRAN 1: Onboarding -->
+  <section id="screen-onboarding" class="screen" data-cy="screen-onboarding">
+    <div class="topbar">İçerik Koçu</div>
+    <div class="content">
+      <h1>Hangi alanda içerik üretiyorsun?</h1>
+      <p class="muted">Seçimine göre senaryoları sana göre uyarlayacağız.</p>
+      <div class="choice-list" data-cy="niche-list">
+        <button class="choice-btn" data-niche="Moda">👗 Moda</button>
+        <button class="choice-btn" data-niche="Yemek">🍳 Yemek</button>
+        <button class="choice-btn" data-niche="Fitness">🏋️ Fitness</button>
+        <button class="choice-btn" data-niche="Kişisel Marka">🎤 Kişisel Marka</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- EKRAN 2: Ana Panel -->
+  <section id="screen-home" class="screen" data-cy="screen-home">
+    <div class="topbar">İçerik Koçu</div>
+    <div class="content">
+      <h1 id="home-greeting" data-cy="home-greeting">Merhaba!</h1>
+      <div class="progress-wrap">
+        <div class="progress-bar"><div id="progress-fill" class="progress-fill"></div></div>
+        <span id="progress-label" class="muted">0/4 tamamlandı</span>
+      </div>
+      <div id="badge-row" class="badge-row" data-cy="badge-row"></div>
+      <h2 class="section-title">Senaryolar</h2>
+      <div id="scenario-list" class="scenario-list" data-cy="scenario-list"></div>
+      <button id="reset-btn" class="link-btn" data-cy="reset-btn">Baştan başla</button>
+    </div>
+  </section>
+
+  <!-- EKRAN 3: Senaryo -->
+  <section id="screen-scenario" class="screen" data-cy="screen-scenario">
+    <div class="topbar"><button id="back-to-home" class="back-btn" data-cy="back-to-home">←</button> Senaryo</div>
+    <div class="content">
+      <h1 id="scenario-title"></h1>
+      <p id="scenario-situation" class="situation"></p>
+
+      <div id="scenario-options" class="choice-list" data-cy="scenario-options"></div>
+
+      <div id="reflection-box" class="reflection-box hidden" data-cy="reflection-box">
+        <label for="reflection-input">Bunu neden seçtin? Kısaca yaz:</label>
+        <textarea id="reflection-input" data-cy="reflection-input" rows="3" placeholder="Çünkü..."></textarea>
+        <button id="submit-reflection" class="primary-btn" data-cy="submit-reflection" disabled>Sonucu Gör</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- EKRAN 4: Sonuç -->
+  <section id="screen-result" class="screen" data-cy="screen-result">
+    <div class="topbar">Sonuç</div>
+    <div class="content">
+      <div class="badge-earned" id="badge-earned" data-cy="badge-earned"></div>
+      <p id="result-text" class="situation" data-cy="result-text"></p>
+      <div class="research-tip" id="research-tip" data-cy="research-tip"></div>
+      <button id="back-to-home-2" class="primary-btn" data-cy="back-to-home-2">Panoya Dön</button>
+    </div>
+  </section>
+
+</div>
+<script src="app.js"></script>
+</body>
+</html>
