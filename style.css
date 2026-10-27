@@ -16,6 +16,7 @@ body {
 }
 .screen { display: none; }
 .screen.active { display: block; }
+.hidden { display: none; }
 
 .topbar {
   padding: 18px 16px 12px;
@@ -25,22 +26,17 @@ body {
   border-bottom: 1px solid #f0f0f4;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 8px;
 }
-.back-btn {
-  border: none;
-  background: none;
-  font-size: 18px;
-  cursor: pointer;
-  color: #6a4cff;
-}
+.timer { font-size: 13px; color: #c0392b; font-weight: 700; }
 .content { padding: 20px 18px 32px; }
 
 h1 { font-size: 20px; margin: 4px 0 8px; }
-h2.section-title { font-size: 15px; margin: 24px 0 10px; color: #333; }
 .muted { color: #888; font-size: 13px; }
+.q-label { font-size: 13px; color: #555; margin: 16px 0 0; }
 
-.choice-list { display: flex; flex-direction: column; gap: 10px; margin-top: 16px; }
+.choice-list { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
 .choice-btn {
   padding: 14px;
   border-radius: 12px;
@@ -67,55 +63,22 @@ h2.section-title { font-size: 15px; margin: 24px 0 10px; color: #333; }
 }
 .primary-btn:disabled { background: #cfc8f7; cursor: not-allowed; }
 
-.link-btn {
-  margin-top: 28px;
-  border: none;
-  background: none;
-  color: #999;
-  font-size: 12px;
-  text-decoration: underline;
-  cursor: pointer;
-}
-
-.progress-wrap { margin: 12px 0 18px; }
-.progress-bar { background: #eee; border-radius: 8px; height: 8px; overflow: hidden; margin-bottom: 6px; }
-.progress-fill { background: #6a4cff; height: 100%; width: 0%; transition: width .3s; }
-
-.badge-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
-.badge-pill {
-  background: #fff3e0; color: #b36b00; font-size: 12px;
-  padding: 6px 10px; border-radius: 999px; font-weight: 600;
-}
-
-.scenario-list { display: flex; flex-direction: column; gap: 10px; }
-.scenario-card {
-  padding: 14px;
-  border-radius: 12px;
-  border: 1px solid #e3e3ee;
-  background: #f7f7fb;
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.scenario-card.done { border-color: #8fd19e; background: #f2fbf4; }
-.scenario-card .status { font-size: 12px; color: #6a4cff; font-weight: 600; }
-.scenario-card.done .status { color: #2e9e4a; }
-
 .situation { font-size: 14px; line-height: 1.5; color: #333; }
+
+.hint-box {
+  margin-top: 14px; padding: 12px; border-radius: 12px;
+  background: #fff3e0; color: #8a5a00; font-size: 13px; line-height: 1.5;
+}
+
 .reflection-box { margin-top: 20px; }
-.reflection-box.hidden { display: none; }
 .reflection-box label { font-size: 13px; color: #555; }
 .reflection-box textarea {
   width: 100%; margin-top: 8px; border-radius: 10px;
   border: 1px solid #e3e3ee; padding: 10px; font-size: 14px; resize: vertical;
 }
 
-.badge-earned {
-  text-align: center; font-size: 15px; font-weight: 700;
-  background: #fff3e0; color: #b36b00; padding: 10px; border-radius: 12px; margin-bottom: 16px;
+.tutor-box {
+  margin-top: 20px; padding: 14px; border-radius: 12px;
+  background: #ece9ff; color: #333;
 }
-.research-tip {
-  margin-top: 16px; padding: 12px; border-radius: 12px;
-  background: #ece9ff; color: #4a3aad; font-size: 13px; line-height: 1.5;
-}
+.tutor-label { font-weight: 700; color: #4a3aad; margin: 0 0 6px; font-size: 13px; }

@@ -3,68 +3,77 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>İçerik Koçu</title>
+<title>İçerik Koçu — SE Primer</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div class="phone">
 
-  <!-- EKRAN 1: Onboarding -->
+  <!-- EKRAN 1: Giriş (Stitch: giriş) -->
   <section id="screen-onboarding" class="screen" data-cy="screen-onboarding">
     <div class="topbar">İçerik Koçu</div>
     <div class="content">
-      <h1>Hangi alanda içerik üretiyorsun?</h1>
-      <p class="muted">Seçimine göre senaryoları sana göre uyarlayacağız.</p>
-      <div class="choice-list" data-cy="niche-list">
-        <button class="choice-btn" data-niche="Moda">👗 Moda</button>
-        <button class="choice-btn" data-niche="Yemek">🍳 Yemek</button>
-        <button class="choice-btn" data-niche="Fitness">🏋️ Fitness</button>
-        <button class="choice-btn" data-niche="Kişisel Marka">🎤 Kişisel Marka</button>
+      <h1>Seni tanıyalım</h1>
+
+      <p class="q-label">Seviyen?</p>
+      <div class="choice-list" data-cy="q-seviye">
+        <button class="choice-btn" data-field="seviye" data-value="Yeni başlıyorum">Yeni başlıyorum</button>
+        <button class="choice-btn" data-field="seviye" data-value="Deneyimliyim">Deneyimliyim</button>
       </div>
+
+      <p class="q-label">Rolün?</p>
+      <div class="choice-list" data-cy="q-rol">
+        <button class="choice-btn" data-field="rol" data-value="Bireysel içerik üretici">Bireysel içerik üretici</button>
+        <button class="choice-btn" data-field="rol" data-value="Marka/ajans yöneticisi">Marka/ajans yöneticisi</button>
+      </div>
+
+      <p class="q-label">Hedefin?</p>
+      <div class="choice-list" data-cy="q-hedef">
+        <button class="choice-btn" data-field="hedef" data-value="Erişim/takipçi büyütmek">Erişim/takipçi büyütmek</button>
+        <button class="choice-btn" data-field="hedef" data-value="Güven ve itibar kazanmak">Güven ve itibar kazanmak</button>
+      </div>
+
+      <button id="start-btn" class="primary-btn" data-cy="start-btn" disabled>Başla</button>
     </div>
   </section>
 
-  <!-- EKRAN 2: Ana Panel -->
-  <section id="screen-home" class="screen" data-cy="screen-home">
-    <div class="topbar">İçerik Koçu</div>
-    <div class="content">
-      <h1 id="home-greeting" data-cy="home-greeting">Merhaba!</h1>
-      <div class="progress-wrap">
-        <div class="progress-bar"><div id="progress-fill" class="progress-fill"></div></div>
-        <span id="progress-label" class="muted">0/4 tamamlandı</span>
-      </div>
-      <div id="badge-row" class="badge-row" data-cy="badge-row"></div>
-      <h2 class="section-title">Senaryolar</h2>
-      <div id="scenario-list" class="scenario-list" data-cy="scenario-list"></div>
-      <button id="reset-btn" class="link-btn" data-cy="reset-btn">Baştan başla</button>
+  <!-- EKRAN 2: Sahne / Karar (Stitch: sahne) -->
+  <section id="screen-karar" class="screen" data-cy="screen-karar">
+    <div class="topbar">
+      <span id="karar-step"></span>
+      <span id="timer" class="timer hidden" data-cy="timer"></span>
     </div>
-  </section>
-
-  <!-- EKRAN 3: Senaryo -->
-  <section id="screen-scenario" class="screen" data-cy="screen-scenario">
-    <div class="topbar"><button id="back-to-home" class="back-btn" data-cy="back-to-home">←</button> Senaryo</div>
     <div class="content">
-      <h1 id="scenario-title"></h1>
-      <p id="scenario-situation" class="situation"></p>
+      <p id="intro-text" class="situation hidden" data-cy="intro-text"></p>
+      <h1 id="karar-title"></h1>
+      <p id="karar-context" class="situation"></p>
 
-      <div id="scenario-options" class="choice-list" data-cy="scenario-options"></div>
+      <div id="hint-box" class="hint-box hidden" data-cy="hint-box"></div>
+
+      <div id="karar-options" class="choice-list" data-cy="karar-options"></div>
 
       <div id="reflection-box" class="reflection-box hidden" data-cy="reflection-box">
-        <label for="reflection-input">Bunu neden seçtin? Kısaca yaz:</label>
+        <label for="reflection-input">Bunu neden seçtin?</label>
         <textarea id="reflection-input" data-cy="reflection-input" rows="3" placeholder="Çünkü..."></textarea>
-        <button id="submit-reflection" class="primary-btn" data-cy="submit-reflection" disabled>Sonucu Gör</button>
+        <button id="submit-reflection" class="primary-btn" data-cy="submit-reflection" disabled>Gönder</button>
+      </div>
+
+      <div id="tutor-box" class="tutor-box hidden" data-cy="tutor-box">
+        <p class="tutor-label">🎓 AI Tutor</p>
+        <p id="tutor-text"></p>
+        <button id="continue-btn" class="primary-btn" data-cy="continue-btn">Devam Et</button>
       </div>
     </div>
   </section>
 
-  <!-- EKRAN 4: Sonuç -->
-  <section id="screen-result" class="screen" data-cy="screen-result">
+  <!-- EKRAN 3: Son (Stitch: son) -->
+  <section id="screen-son" class="screen" data-cy="screen-son">
     <div class="topbar">Sonuç</div>
     <div class="content">
-      <div class="badge-earned" id="badge-earned" data-cy="badge-earned"></div>
-      <p id="result-text" class="situation" data-cy="result-text"></p>
-      <div class="research-tip" id="research-tip" data-cy="research-tip"></div>
-      <button id="back-to-home-2" class="primary-btn" data-cy="back-to-home-2">Panoya Dön</button>
+      <h1 id="son-title" data-cy="son-title"></h1>
+      <p id="son-text" class="situation" data-cy="son-text"></p>
+      <p class="muted" id="son-score" data-cy="son-score"></p>
+      <button id="restart-btn" class="primary-btn" data-cy="restart-btn">Baştan Başla</button>
     </div>
   </section>
 

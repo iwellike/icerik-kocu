@@ -1,203 +1,187 @@
-const SCENARIOS = [
+const INTRO =
+  "Gece yarısı bir videon beklenmedik şekilde 1 milyon izlenmeye ulaştı. Sabah hesabını açtığında yüzlerce mesaj ve bir marka işbirliği teklifi seni bekliyor.";
+
+const KARARLAR = [
   {
-    id: "takipci-dususu",
-    title: "Takipçi Sayın Aniden Düşüyor",
-    situation: (niche) =>
-      `Bir hafta içinde ${niche} içeriklerinin erişimi %40 düştü. Ne yaparsın?`,
+    title: "Karar 1 · Strateji",
+    context: "Bu viral anı nasıl değerlendireceksin?",
+    hint: "İpucu: Bir videonun viral olması, o kitlenin sürekli içeriğini de istediği anlamına gelmez.",
     options: [
       {
-        text: "Hemen gündemdeki bir trendi birebir kopyala",
-        result:
-          "Trend kısa süreli ilgi çekebilir ama senin içerik kimliğinle uyumsuzsa takipçi kaybına da yol açabilir.",
-        tip: "Araştır: \"içerik-marka uyumu\" ne demek, bir trendi kullanırken kendi kimliğini nasıl korursun?",
+        key: "A",
+        text: "Aynı formatı art arda paylaş",
+        risky: true,
+        tutor: "Bu formatı tekrarlamadan önce, bu izleyici kitlesinin asıl içeriğine ilgisini nasıl ölçebilirsin?",
       },
       {
-        text: "Son 10 gönderinin performans verisine bak, düşüşün nerede başladığını incele",
-        result:
-          "Veriye dayalı karar genelde daha sürdürülebilir sonuç verir — ama tek haftalık veri bazen yanıltıcı olabilir (algoritma testi, tatil dönemi gibi dışsal etkenler de olabilir).",
-        tip: "Araştır: Instagram/TikTok'ta \"reach\" düşüşünün yaygın nedenleri neler?",
-      },
-      {
-        text: "Takipçi/beğeni satın alan bir servis dene",
-        result:
-          "Satın alınan takipçi/beğeni gerçek etkileşim oranını düşürür; algoritma bunu fark edip içeriğini daha az önerebilir.",
-        tip: "Araştır: \"engagement rate\" algoritmanın içerik dağıtım kararını nasıl etkiler?",
+        key: "B",
+        text: "Son 24 saatin izleyici verisine bak, asıl içeriğe ilgiyi ölç",
+        risky: false,
+        tutor: "Veriye bakman iyi bir refleks — hangi metrik sana \"bu kitle kalıcı mı\" sorusunun cevabını verir?",
       },
     ],
-    badge: "Erişim Dedektifi",
   },
   {
-    id: "viral-patlama",
-    title: "Bir İçerik Beklenmedik Şekilde Viral Oldu",
-    situation: (niche) =>
-      `Normalde 200 izlenme alan bir videon 500.000 izlenmeye ulaştı ama ${niche} temandan tamamen kopuk bir içerikti. Ne yaparsın?`,
+    title: "Karar 2 · Doğrulama",
+    context: "Marka işbirliği teklifine ne yapacaksın?",
+    hint: "İpucu: Hızlı imza kısa vadede cazip görünür ama test edilmemiş bir ürün itibarına zarar verebilir.",
     options: [
       {
-        text: "Bundan sonra sadece viral olan formatı tekrar tekrar üret",
-        result:
-          "Kısa vadede izlenme artabilir ama hesabının asıl temasından uzaklaşırsan, seni o temadan takip edenleri kaybedebilirsin.",
-        tip: "Araştır: \"izleyici kalıcılığı (audience retention)\" ile tek videoluk izlenme arasındaki fark nedir?",
+        key: "A",
+        text: "Teklifi hemen imzala",
+        risky: true,
+        tutor: "Hızlı imzaladın — ürün beklenmedik çıkarsa itibarını nasıl korursun?",
       },
       {
-        text: "Yeni gelen izleyicilere asıl içeriğini tanıtan bir takip videosu hazırla",
-        result:
-          "Viral anı, yeni gelen kalabalığı kalıcı takipçiye çevirmek için bir fırsata dönüştürme şansı yüksek bir yaklaşım.",
-        tip: "Araştır: \"viral an\"ı kalıcı takipçiye çeviren içerik üreticileri hangi yöntemleri kullanıyor?",
-      },
-      {
-        text: "Hiçbir şey yapma, kendi akışına devam et",
-        result:
-          "Güvenli bir seçim ama viral anın getirdiği dikkat genelde kısa sürede geçer; hiç değerlendirmemek bir fırsatı kaçırmak olabilir.",
-        tip: "Araştır: platformlar viral içerik sonrası hesaba ne kadar süre fazladan görünürlük veriyor?",
+        key: "B",
+        text: "Ürünü önce küçük bir kitleye test et",
+        risky: false,
+        tutor: "Küçük test iyi bir adım — kaç kişilik bir örneklem sana güvenilir bir sinyal verir dersin?",
       },
     ],
-    badge: "Kimliğine Sadık",
   },
   {
-    id: "veri-mahremiyeti",
-    title: "Konum ve Yüz Paylaşımı İsteği",
-    situation: (niche) =>
-      `Bir marka işbirliği, canlı konumunu ve yakın çekim yüz videolarını ${niche} içeriğinde paylaşmanı istiyor; karşılığında ücret teklif ediyor. Ne yaparsın?`,
+    title: "Karar 3 · Mahremiyet",
+    context: "Hedeflemeyi iyileştirmek için takipçi konum/mesaj verisine erişen bir 3. parti analitik aracına bağlanman öneriliyor.",
+    hint: "İpucu: Daha fazla veri her zaman daha iyi hedefleme getirmez; mahremiyet riskini de taşır.",
     options: [
       {
-        text: "Kabul et, teklif edilen ücret iyi",
-        result:
-          "Kısa vadede gelir sağlar ama paylaşılan konum ve yüz verisi geri alınamaz; ileride güvenlik ya da mahremiyet riski oluşturabilir.",
-        tip: "Araştır: \"dijital ayak izi\" ve paylaşılan konum verisinin uzun vadeli riskleri nedir?",
+        key: "A",
+        text: "Bağlan, daha iyi hedefleme için veriye ihtiyacın var",
+        risky: true,
+        tutor: "Bu veriye erişim vermeden önce, takipçilerinin bunu bilip bilmediğini nasıl kontrol edersin?",
       },
       {
-        text: "Konumu gizle/geciktir, yalnızca genel bölgeyi paylaş; yüz yerine ürünü öne çıkar",
-        result:
-          "Markanın beklediği görünürlüğü büyük ölçüde korurken kişisel veri riskini azaltan bir ara yol.",
-        tip: "Araştır: içerik üreticileri marka işbirliklerinde mahremiyeti korumak için hangi teknikleri kullanıyor?",
-      },
-      {
-        text: "Teklifi reddet",
-        result:
-          "Mahremiyetini tam korursun ama bu işbirliğinden gelecek geliri ve görünürlüğü de kaybedersin.",
-        tip: "Araştır: marka işbirliklerinde \"sınır koyma\" ile gelir kaybı arasındaki dengeyi nasıl kurabilirsin?",
+        key: "B",
+        text: "Sadece platformun anonim/agregat istatistikleriyle yetin",
+        risky: false,
+        tutor: "Agregat veriyle yetinmek mahremiyeti korur — bu seçim hedefleme kalitesinden ne kadar ödün verdirir sence?",
       },
     ],
-    badge: "Gizlilik Bekçisi",
-  },
-  {
-    id: "sistem-kesintisi",
-    title: "Yayın Sırasında Platform Çöktü",
-    situation: (niche) =>
-      `Canlı yayında ${niche} takipçilerine en kritik anını gösterirken uygulama çöküyor, 10 dakika erişim kesiliyor. Ne yaparsın?`,
-    options: [
-      {
-        text: "Sessizce bekle, yeniden bağlanınca devam et",
-        result:
-          "Basit bir çözüm ama izleyiciler neler olduğunu bilmeden sayfadan ayrılabilir.",
-        tip: "Araştır: canlı yayın kesintilerinde izleyici kaybını azaltan \"kriz iletişimi\" yöntemleri neler?",
-      },
-      {
-        text: "Başka bir platformdan (örn. Story) anında durumu bildir",
-        result:
-          "İzleyicilerle şeffaf iletişim güven oluşturur ve onları kaybetme riskini azaltır.",
-        tip: "Araştır: tek platforma bağımlı olmanın (\"platform riski\") içerik üreticileri için getirdiği riskler neler?",
-      },
-      {
-        text: "Hesabı sil, bir daha canlı yayın yapma",
-        result:
-          "Tek bir teknik arızadan kalıcı bir karar almak, geçici bir sorunu kalıcı bir kayba çevirebilir.",
-        tip: "Araştır: büyük platformlarda kesinti ne sıklıkla yaşanıyor, bu ne kadar \"normal\" bir risk?",
-      },
-    ],
-    badge: "Kriz Yöneticisi",
   },
 ];
 
+const SONUC = {
+  A: {
+    title: "Son A — İyi",
+    text: "Takipçin kalıcı olarak büyüdü, marka ortaklığın uzun soluklu oldu, hiçbir gizlilik şikâyeti almadın.",
+  },
+  B: {
+    title: "Son B — Kötü",
+    text: "Viral an geçti, test edilmemiş ürün itibarını zedeledi, bir takipçi konum verisi paylaşımını fark edip seni ifşa etti.",
+  },
+};
+
+const TIMER_SECONDS = 60;
 const STORAGE_KEY = "icerikKocuState";
 
 function loadState() {
   const raw = localStorage.getItem(STORAGE_KEY);
-  return raw ? JSON.parse(raw) : { niche: null, completed: {} };
+  return raw ? JSON.parse(raw) : null;
 }
-
-function saveState(state) {
+function saveState() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
 }
 
-let state = loadState();
-let activeScenarioId = null;
-let selectedOptionIndex = null;
+let state = loadState() || { seviye: null, rol: null, hedef: null, score: 0, kararIndex: 0 };
+let timerInterval = null;
+let pendingChoice = null;
 
 function showScreen(id) {
   document.querySelectorAll(".screen").forEach((s) => s.classList.remove("active"));
   document.getElementById(id).classList.add("active");
 }
 
-function renderHome() {
-  document.getElementById("home-greeting").textContent = `Merhaba, ${state.niche} üreticisi!`;
-
-  const total = SCENARIOS.length;
-  const done = Object.keys(state.completed).length;
-  document.getElementById("progress-fill").style.width = `${(done / total) * 100}%`;
-  document.getElementById("progress-label").textContent = `${done}/${total} tamamlandı`;
-
-  const badgeRow = document.getElementById("badge-row");
-  badgeRow.innerHTML = "";
-  Object.values(state.completed).forEach((entry) => {
-    const pill = document.createElement("span");
-    pill.className = "badge-pill";
-    pill.textContent = `🏅 ${entry.badge}`;
-    badgeRow.appendChild(pill);
+document.querySelectorAll(".choice-btn[data-field]").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const field = btn.dataset.field;
+    state[field] = btn.dataset.value;
+    document.querySelectorAll(`.choice-btn[data-field="${field}"]`).forEach((b) => b.classList.remove("selected"));
+    btn.classList.add("selected");
+    document.getElementById("start-btn").disabled = !(state.seviye && state.rol && state.hedef);
   });
+});
 
-  const list = document.getElementById("scenario-list");
-  list.innerHTML = "";
-  SCENARIOS.forEach((sc) => {
-    const isDone = !!state.completed[sc.id];
-    const card = document.createElement("div");
-    card.className = "scenario-card" + (isDone ? " done" : "");
-    card.dataset.cy = "scenario-card";
-    card.dataset.scenarioId = sc.id;
-    card.innerHTML = `<span>${sc.title}</span><span class="status">${isDone ? "✓ Tamamlandı" : "Başla"}</span>`;
-    card.addEventListener("click", () => openScenario(sc.id));
-    list.appendChild(card);
-  });
+document.getElementById("start-btn").addEventListener("click", () => {
+  state.score = 0;
+  state.kararIndex = 0;
+  saveState();
+  openKarar(0);
+});
 
-  showScreen("screen-home");
+function stopTimer() {
+  clearInterval(timerInterval);
+  timerInterval = null;
 }
 
-function openScenario(id) {
-  activeScenarioId = id;
-  selectedOptionIndex = null;
-  const sc = SCENARIOS.find((s) => s.id === id);
-  const existing = state.completed[id];
+function openKarar(index) {
+  stopTimer();
+  pendingChoice = null;
+  const k = KARARLAR[index];
 
-  document.getElementById("scenario-title").textContent = sc.title;
-  document.getElementById("scenario-situation").textContent = sc.situation(state.niche);
+  document.getElementById("karar-step").textContent = `${index + 1}/3`;
+  const introEl = document.getElementById("intro-text");
+  if (index === 0) {
+    introEl.textContent = INTRO;
+    introEl.classList.remove("hidden");
+  } else {
+    introEl.classList.add("hidden");
+  }
+  document.getElementById("karar-title").textContent = k.title;
+  document.getElementById("karar-context").textContent = k.context;
 
-  const optionsBox = document.getElementById("scenario-options");
+  const hintBox = document.getElementById("hint-box");
+  if (state.seviye === "Yeni başlıyorum") {
+    hintBox.textContent = k.hint;
+    hintBox.classList.remove("hidden");
+  } else {
+    hintBox.classList.add("hidden");
+  }
+
+  const optionsBox = document.getElementById("karar-options");
   optionsBox.innerHTML = "";
-  sc.options.forEach((opt, i) => {
+  k.options.forEach((opt) => {
     const btn = document.createElement("button");
     btn.className = "choice-btn";
-    btn.dataset.cy = "scenario-option";
+    btn.dataset.cy = "karar-option";
+    btn.dataset.key = opt.key;
     btn.textContent = opt.text;
-    btn.addEventListener("click", () => selectOption(i));
+    btn.addEventListener("click", () => chooseOption(index, opt));
     optionsBox.appendChild(btn);
   });
 
-  const reflectionBox = document.getElementById("reflection-box");
-  reflectionBox.classList.add("hidden");
+  document.getElementById("reflection-box").classList.add("hidden");
   document.getElementById("reflection-input").value = "";
   document.getElementById("submit-reflection").disabled = true;
+  document.getElementById("tutor-box").classList.add("hidden");
 
-  if (existing) {
-    showResult(id, existing.optionIndex, false);
+  const timerEl = document.getElementById("timer");
+  if (state.seviye === "Deneyimliyim") {
+    let remaining = TIMER_SECONDS;
+    timerEl.textContent = `${remaining}s`;
+    timerEl.classList.remove("hidden");
+    timerInterval = setInterval(() => {
+      remaining -= 1;
+      timerEl.textContent = `${remaining}s`;
+      if (remaining <= 0) {
+        stopTimer();
+        if (!pendingChoice) chooseOption(index, k.options[0]);
+      }
+    }, 1000);
   } else {
-    showScreen("screen-scenario");
+    timerEl.classList.add("hidden");
   }
+
+  showScreen("screen-karar");
 }
 
-function selectOption(index) {
-  selectedOptionIndex = index;
-  document.querySelectorAll("#scenario-options .choice-btn").forEach((btn, i) => {
-    btn.classList.toggle("selected", i === index);
+function chooseOption(index, opt) {
+  if (pendingChoice) return;
+  pendingChoice = opt;
+  stopTimer();
+
+  document.querySelectorAll('#karar-options .choice-btn').forEach((b) => {
+    b.classList.toggle("selected", b.dataset.key === opt.key);
   });
   document.getElementById("reflection-box").classList.remove("hidden");
 }
@@ -207,51 +191,42 @@ document.getElementById("reflection-input").addEventListener("input", (e) => {
 });
 
 document.getElementById("submit-reflection").addEventListener("click", () => {
-  const sc = SCENARIOS.find((s) => s.id === activeScenarioId);
-  const reflection = document.getElementById("reflection-input").value.trim();
+  if (!pendingChoice) return;
+  const index = state.kararIndex;
 
-  state.completed[activeScenarioId] = {
-    optionIndex: selectedOptionIndex,
-    reflection,
-    badge: sc.badge,
-  };
-  saveState(state);
+  if (!pendingChoice.risky) state.score += 1;
+  saveState();
 
-  showResult(activeScenarioId, selectedOptionIndex, true);
+  document.getElementById("reflection-box").classList.add("hidden");
+  document.getElementById("tutor-text").textContent = pendingChoice.tutor;
+  document.getElementById("tutor-box").classList.remove("hidden");
 });
 
-function showResult(scenarioId, optionIndex, justEarned) {
-  const sc = SCENARIOS.find((s) => s.id === scenarioId);
-  const opt = sc.options[optionIndex];
+document.getElementById("continue-btn").addEventListener("click", () => {
+  const nextIndex = state.kararIndex + 1;
+  if (nextIndex < KARARLAR.length) {
+    state.kararIndex = nextIndex;
+    saveState();
+    openKarar(nextIndex);
+  } else {
+    showSon();
+  }
+});
 
-  document.getElementById("badge-earned").textContent = justEarned
-    ? `🏅 Rozet kazandın: ${sc.badge}`
-    : `🏅 Rozetin: ${sc.badge}`;
-  document.getElementById("result-text").textContent = opt.result;
-  document.getElementById("research-tip").textContent = opt.tip;
-
-  showScreen("screen-result");
+function showSon() {
+  const result = state.score >= 2 ? SONUC.A : SONUC.B;
+  document.getElementById("son-title").textContent = result.title;
+  document.getElementById("son-text").textContent = result.text;
+  document.getElementById("son-score").textContent = `Puan: ${state.score}/3`;
+  showScreen("screen-son");
 }
 
-document.querySelectorAll(".choice-btn[data-niche]").forEach((btn) => {
-  btn.addEventListener("click", () => {
-    state.niche = btn.dataset.niche;
-    saveState(state);
-    renderHome();
-  });
-});
-
-document.getElementById("back-to-home").addEventListener("click", renderHome);
-document.getElementById("back-to-home-2").addEventListener("click", renderHome);
-
-document.getElementById("reset-btn").addEventListener("click", () => {
+document.getElementById("restart-btn").addEventListener("click", () => {
   localStorage.removeItem(STORAGE_KEY);
-  state = { niche: null, completed: {} };
+  state = { seviye: null, rol: null, hedef: null, score: 0, kararIndex: 0 };
+  document.querySelectorAll(".choice-btn[data-field]").forEach((b) => b.classList.remove("selected"));
+  document.getElementById("start-btn").disabled = true;
   showScreen("screen-onboarding");
 });
 
-if (state.niche) {
-  renderHome();
-} else {
-  showScreen("screen-onboarding");
-}
+showScreen("screen-onboarding");
