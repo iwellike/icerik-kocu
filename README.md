@@ -14,7 +14,7 @@ Fikir, geliştiricinin kendi İçerik Zekâsı (Instagram içerik analizi) proje
 
 1. **GitHub repo:** https://github.com/iwellike/icerik-kocu
 2. **AI Studio uygulaması:** https://icerik-kocu.ai.studio
-3. **Demo video:** <!-- cypress/videos/app.cy.js.mp4 dosyasını (veya yüklediğin yeri) buraya bağla -->
+3. **Demo video:** [`icerik-kocu-demo.gif`](./icerik-kocu-demo.gif) (ekran kaydı — onboarding → Karar 1 → Karar 2 akışı)
 
 ## 🧩 Pipeline
 
@@ -75,7 +75,8 @@ Bkz. [`kullanici-testi-raporu.md`](./kullanici-testi-raporu.md).
 
 ## 🎬 Demo Video
 
-Cypress'in `cy:run` sırasında otomatik ürettiği video: `cypress/videos/app.cy.js.mp4` — tüm 8 yolu ve süre-baskısı davranışını gösterir.
+- [`icerik-kocu-demo.gif`](./icerik-kocu-demo.gif) — ekran kaydı, uygulamanın gerçek akışını gösterir (onboarding → Karar 1 → Karar 2).
+- Ayrıca Cypress'in `cy:run` sırasında otomatik ürettiği video: `cypress/videos/app.cy.js.mp4` — tüm 8 yolu ve süre-baskısı davranışını gösterir.
 
 ## 🧭 Ürün Kararı — Yapmadığım 3 Özellik
 
