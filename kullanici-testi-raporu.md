@@ -37,10 +37,10 @@
 
 | Kriter | Gözlem |
 |---|---|
-| Kişiselleştirme fark edildi mi? kesinlikle ediliyor
-| Cevap dayatılmadan düşündürdü mü? evet
-| Hatasını/riskini fark etmesini sağladı mı? | sağlandı.
-| Akış anlaşılır/sorunsuz mu? sorunsuz
+| Kişiselleştirme fark edildi mi? | Kesinlikle ediliyor |
+| Cevap dayatılmadan düşündürdü mü? | Evet |
+| Hatasını/riskini fark etmesini sağladı mı? | Sağlandı |
+| Akış anlaşılır/sorunsuz mu? | Sorunsuz |
 
 ## Kaynaklar
 
