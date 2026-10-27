@@ -1,30 +1,36 @@
-# 📱 İçerik Koçu — Kişiselleştirilmiş Öğrenme Uygulaması
+# 📱 İçerik Koçu — SE Primer
 
-> İçerik üreticilerine, karşılaştığı gerçek dilemmaları (erişim düşüşü, viral an, veri mahremiyeti, platform kesintisi) seçimli senaryolarla sunan; cevabı dayatmadan düşünmeye ve araştırmaya yönlendiren mobil web uygulaması.
+> Kişiye uyum sağlayan bir "primer": içerik üreticisi oyuncu, viral bir kriz anında 3 sıralı karar verir, her kararın gerçekçi sonucunu görür. AI tutor cevabı söylemez, düşündüren bir soru sorar.
 
 ---
 
 ## 🎯 Amaç
 
-Bu proje **Mobil Uygulama Geliştirme** dersi kapsamındaki "kişiselleştirilmiş öğrenme uygulaması" ödevi için geliştirilmiştir. Uygulama, kullanıcıyı yargılamadan yönlendiren, kendi niş/alanına göre kişiselleştirilmiş senaryolar sunan ve kullanıcıyı doğrudan cevap vermek yerine araştırmaya iten bir öğrenme deneyimi sağlar.
+Bu proje **Mobil Uygulama Geliştirme** dersi "SE Primer" ödevi için geliştirilmiştir. Tam spec için bkz. [`spec.md`](./spec.md).
 
 Fikir, geliştiricinin kendi İçerik Zekâsı (Instagram içerik analizi) projesiyle bağlantılı gerçek bir ihtiyaçtan türetilmiştir: içerik üreticilerinin sık karşılaştığı stratejik kararları (veriye dayalı mı trend'e mi güveneceğim, mahremiyetimi mi gelir mi koruyacağım) güvenli bir ortamda deneyip sonuçlarını görmesi.
 
-## 🖥️ Ekranlar
+## 🔗 Üç Link
 
-1. **Onboarding** — kullanıcı içerik ürettiği alanı (Moda / Yemek / Fitness / Kişisel Marka) seçer; bundan sonraki tüm senaryolar bu bilgiye göre kişiselleştirilir.
-2. **Ana Panel** — ilerleme çubuğu, kazanılan rozetler ve 4 senaryonun listesi (tamamlanan/tamamlanmayan durumu).
-3. **Senaryo** — niş'e özel bir durum anlatılır, 3 seçenek sunulur; seçim yapınca "neden bunu seçtin?" diye kısa bir yansıma yazması istenir (cevap dayatılmaz).
-4. **Sonuç** — seçimin gerçekçi sonucu + kazanılan rozet + "araştır" ipucu (doğru/yanlış değil, araştırılacak bir terim/soru) gösterilir.
+1. **GitHub repo:** https://github.com/iwellike/icerik-kocu
+2. **AI Studio uygulaması:** https://icerik-kocu.ai.studio
+3. **Demo video:** <!-- cypress/videos/app.cy.js.mp4 dosyasını (veya yüklediğin yeri) buraya bağla -->
 
-## 🧠 Kişiselleştirme ve "yargılamadan yönlendirme" nasıl sağlandı?
+## 🧩 Pipeline
 
-- Senaryo metinleri seçilen niş'e göre değişir (`situation(niche)`).
-- Her seçimden sonra "doğru/yanlış" etiketi yok — gerçekçi bir sonuç + bir araştırma sorusu var.
-- Rozetler tamamlama için verilir, "doğru seçim" için değil.
-- Kullanıcının kendi yansıma metni kaydedilir (localStorage), ona cevabı düşündürme zorunluluğu var (metin boşsa "Sonucu Gör" butonu kilitli).
+**Google Stitch** (3 ekran tasarımı → [`DESIGN.md`](./DESIGN.md), [`design/`](./design)) → **Google AI Studio** (gerçek Gemini destekli çalışan uygulama → [`ai-studio-prompt.md`](./ai-studio-prompt.md)) → **Cypress** (tüm yollar E2E + demo video).
 
-## 🚀 Nasıl Çalıştırılır?
+## 🖥️ Akış (3 ekran tipi)
+
+1. **Giriş** — 3 soru: seviye, rol, hedef. Anlatı ve zorluk buna göre uyarlanır.
+2. **Sahne/Karar** — tek senaryo, 3 sıralı karar (Strateji → Doğrulama → Mahremiyet). "Yeni başlıyorum" ipucu gösterir, "Deneyimliyim" 60 saniyelik süre baskısı uygular. Her karardan sonra oyuncu yansımasını yazar, AI tutor (Gemini) buna düşündüren bir soruyla yanıt verir — doğru cevabı söylemez.
+3. **Son** — toplam puana (0-3) göre 2 farklı son (İyi/Kötü), puan şeffaf gösterilir.
+
+Detaylı akış şeması ve kabul örnekleri için [`spec.md`](./spec.md).
+
+## 🚀 Yerel Prototipi Çalıştırma
+
+> Not: Yerel prototip (`app.js`) AI tutor adımını sabit örnek metinlerle simüle eder — gerçek Gemini çağrısı yalnızca AI Studio uygulamasında çalışır. Yerel prototip; Cypress testleri ve tasarım/akış doğrulaması için kullanılır.
 
 Gereksinim: [Node.js](https://nodejs.org/) (v18+)
 
@@ -34,53 +40,54 @@ npm install
 npm start
 ```
 
-Tarayıcıda (veya telefonun tarayıcısında, aynı ağdaysan bilgisayarın IP'si ile) aç:
-
-```
-http://localhost:5173
-```
+Tarayıcıda aç: `http://localhost:5173`
 
 ## ✅ Testler (Cypress)
 
 Uygulama ayaktayken (`npm start`), başka bir terminalde:
 
 ```bash
-npm run cy:run      # headless çalıştırır
+npm run cy:run      # headless çalıştırır, video üretir (cypress/videos/)
 npm run cy:open     # test arayüzünü açar
 ```
 
-Testler (`cypress/e2e/app.cy.js`) şunları doğrular:
-- Onboarding → niş seçimi → ana panele geçiş
-- Bir senaryoyu tamamlama → rozet kazanma → ilerlemenin güncellenmesi
-- Tamamlanmış bir senaryoya tekrar girince seçeneklerin değil, sonucun gösterilmesi
-- "Baştan başla" ile sıfırlama
+`cypress/e2e/app.cy.js`, 3 karar x 2 seçenek'in **tüm 8 kombinasyonunu** (her biri doğru sona ulaştığını doğrulayarak) + "Deneyimliyim" süre baskısı davranışını + sıfırlamayı E2E test eder.
 
 ## 📁 Proje Yapısı
 
 ```
 icerik-kocu/
-├── index.html          ← 4 ekran (tek sayfa, show/hide)
-├── style.css           ← mobil görünüm (telefon çerçevesi)
-├── app.js              ← senaryo verisi + uygulama mantığı
-├── server.js           ← bağımlılıksız statik sunucu (Node http)
+├── spec.md              ← problem, kapsam, 5 kabul örneği, akış şeması
+├── DESIGN.md             ← Stitch ekranları + tasarım kararları
+├── design/                ← Stitch'ten dışa aktarılan 3 ekran görseli
+├── stitch-prompt.md       ← Stitch'e yapıştırılan prompt
+├── ai-studio-prompt.md    ← AI Studio'ya yapıştırılan build prompt'u
+├── tutor-eval.md          ← AI tutor'un 20 örnek cevaba verdiği yanıtların değerlendirmesi
+├── index.html / style.css / app.js   ← yerel prototip
+├── server.js              ← bağımlılıksız statik sunucu (Node http)
 ├── cypress.config.js
 └── cypress/e2e/app.cy.js
 ```
 
 ## 🧪 Gerçek Kullanıcı Testi
 
-Bkz. [`kullanici-testi-raporu.md`](./kullanici-testi-raporu.md) — gerçek bir kişiye uygulama test ettirilip bulgular bu dosyaya işlenecektir.
+Bkz. [`kullanici-testi-raporu.md`](./kullanici-testi-raporu.md).
 
-## 🎬 Tanıtım Videosu
+## 🎬 Demo Video
 
-Bkz. [`video-script.md`](./video-script.md) — ekran kaydı değil, anlatımlı tanıtım videosu için konuşma taslağı.
+Cypress'in `cy:run` sırasında otomatik ürettiği video: `cypress/videos/app.cy.js.mp4` — tüm 8 yolu ve süre-baskısı davranışını gösterir.
+
+## 🧭 Ürün Kararı — Yapmadığım 3 Özellik
+
+1. **Kullanıcı hesabı/girişi eklemedim** çünkü MVP'nin değerlendirme hedefi kimlik doğrulama değil, karar-sonuç döngüsünün kendisi.
+2. **İkinci bir senaryo/bölüm eklemedim** çünkü kapsamı tek bir krizde derinleştirmek, yüzeysel çoklu senaryodan daha güçlü bir "kabul örneği" seti üretiyor.
+3. **Native mobil uygulama yapmadım** çünkü tek bir AI Studio linkiyle telefon tarayıcısından anında oynanabilir olması, store'a yüklemeden "baştan sona oynanır" kriterini daha hızlı karşılıyor.
 
 ## 👩‍💻 Öğrenci Bilgileri
 
 - **Ad Soyad:** Melike Tıkır
 - **Öğrenci No:** 231118022
 - **E-posta:** meliketikir012@gmail.com
-- **GitHub:** https://github.com/iwellike/icerik-kocu
 
 ## 📄 Lisans
 
