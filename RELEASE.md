@@ -80,6 +80,11 @@ Bonus olarak bu repoda `server/` altında kendi-sunucunuz seçeneği de uygulanm
 
 ## Bonus — kendi sunucunuz
 
+**Canlı:** https://icerik-kocu.onrender.com (Render ücretsiz katman, `primer-v2-model` dalından
+otomatik deploy). `curl -X POST https://icerik-kocu.onrender.com/predict -H 'Content-Type: application/json' -d '{"seviye_deneyimli":0,"sahne_no":1,"karar_suresi_sn":3.0,"karar_degisikligi_sayisi":0,"riskli_sayisi_simdiye_kadar":0}'`
+ile test edilebilir. Parite doğrulandı: `server/parite_kontrol.py https://icerik-kocu.onrender.com`
+→ 5/5 referans girdi, maks fark 4.93e-07 (`<1e-4`).
+
 `server/` (FastAPI, `onnxruntime` Python paketi) aynı `model.onnx`'i çalıştırır ve
 `tests/parite.json`'daki referans girdilerde `<1e-4` toleransla aynı sonucu verir
 (bkz. `server/README.md`).
