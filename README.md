@@ -10,6 +10,16 @@ Bu proje **Mobil Uygulama Geliştirme** dersi "SE Primer" ödevi için geliştir
 
 Fikir, geliştiricinin kendi İçerik Zekâsı (Instagram içerik analizi) projesiyle bağlantılı gerçek bir ihtiyaçtan türetilmiştir: içerik üreticilerinin sık karşılaştığı stratejik kararları (veriye dayalı mı trend'e mi güveneceğim, mahremiyetimi mi gelir mi koruyacağım) güvenli bir ortamda deneyip sonuçlarını görmesi.
 
+## ⚠️ Veri — bilinçli bir ödünleşim
+
+`data/oturumlar.csv` şu an **tamamen sentetik** (`kaynak=sentetik`, 40 oturum, seed=13,
+bkz. `data/sentetik_uret.py`). Gerçek oturum toplama mekanizması tam çalışır durumda
+(`npm start` ile oynanan her oturum otomatik `kaynak=gercek` olarak loglanır — bkz.
+`server.js` → `/api/oturum`), ama zaman kısıtı nedeniyle en az 15 gerçek oturum
+toplanmadı. Ödevin kendi kuralı gereği ("Yalnız sentetik veriyle yapılan ödevde Veri
+kaleminin yarısı alınır") bu, **bilinçli olarak kabul edilen** bir puan kaybı —
+veriyi gerçekmiş gibi göstermek yerine durum olduğu gibi bırakıldı.
+
 ## 🔗 Linkler
 
 **v1 (geçen hafta):**
