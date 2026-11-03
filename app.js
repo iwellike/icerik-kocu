@@ -111,8 +111,9 @@ let kararDegisiklikSayisi = 0;
 
 // model.onnx: girdi 'input' float32 [1,5] = [seviye_deneyimli, sahne_no, karar_suresi_sn,
 // karar_degisikligi_sayisi, riskli_sayisi_simdiye_kadar] (bkz. model/config.json → features).
-// Yerel/Cypress: relatif yol. Yayından sonra HF commit URL'sine sabitlenir (bkz. RELEASE.md).
-const MODEL_URL = "model/model.onnx";
+// HF commit'e sabit (bkz. RELEASE.md → Yayın günlüğü). "main" değil, belirli bir commit —
+// rollback tek satır (bu sabiti bir önceki commit URL'sine çevirmek).
+const MODEL_URL = "https://huggingface.co/iwellike/icerik-kocu-kotu-son-riski/resolve/857ccb898162f99ae0ba1642b03cb92eb68d1c08/model.onnx";
 const MODEL_ESIK = 0.5;
 let ortSessionPromise = null;
 

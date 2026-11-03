@@ -19,7 +19,7 @@ Fikir, geliştiricinin kendi İçerik Zekâsı (Instagram içerik analizi) proje
 
 **v2 (bu hafta — ödev teslim formunun istediği 4 link):**
 1. **GitHub repo:** https://github.com/iwellike/icerik-kocu (branch: `primer-v2-model`)
-2. **Hugging Face model (commit'e sabit):** bkz. [`RELEASE.md`](./RELEASE.md) → "Yayın günlüğü"
+2. **Hugging Face model (commit'e sabit):** https://huggingface.co/iwellike/icerik-kocu-kotu-son-riski/resolve/857ccb898162f99ae0ba1642b03cb92eb68d1c08/model.onnx (repo: https://huggingface.co/iwellike/icerik-kocu-kotu-son-riski)
 3. **Canlı uygulama (web):** yerel prototip, aşağıdaki "Yerel Prototipi Çalıştırma"
 4. **Demo video (v2):** `cypress/videos/model.cy.js.mp4` + ayrı bir ekran kaydı (bkz. aşağıda "Demo Video")
 

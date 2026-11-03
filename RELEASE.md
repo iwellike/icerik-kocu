@@ -16,12 +16,11 @@
 Tüketiciler modeli `main` dalından değil, **commit'e sabitlenmiş** resolve URL'den çeker:
 
 ```
-https://huggingface.co/<HF_KULLANICI>/icerik-kocu-kotu-son-riski/resolve/<COMMIT_SHA>/model.onnx
-https://huggingface.co/<HF_KULLANICI>/icerik-kocu-kotu-son-riski/resolve/<COMMIT_SHA>/config.json
+https://huggingface.co/iwellike/icerik-kocu-kotu-son-riski/resolve/857ccb898162f99ae0ba1642b03cb92eb68d1c08/model.onnx
+https://huggingface.co/iwellike/icerik-kocu-kotu-son-riski/resolve/857ccb898162f99ae0ba1642b03cb92eb68d1c08/config.json
 ```
 
-> `<HF_KULLANICI>` / `<COMMIT_SHA>`: Hugging Face'e yayınlandıktan sonra buraya ve
-> `app.js`'teki `MODEL_URL` sabitine yazılır (bkz. Task 5 / aşağıdaki "Yayın günlüğü").
+Model reposu: https://huggingface.co/iwellike/icerik-kocu-kotu-son-riski (`publish_model.py` ile yayınlandı).
 
 ## Rollback
 
@@ -77,7 +76,7 @@ Bonus olarak bu repoda `server/` altında kendi-sunucunuz seçeneği de uygulanm
 
 | Tarih | Commit | Not |
 |---|---|---|
-| _(doldurulacak)_ | _(doldurulacak)_ | İlk yayın — `train.py` eşiği geçti (accuracy/recall, bkz. `model/config.json`) |
+| 2026-11-03 | `857ccb898162f99ae0ba1642b03cb92eb68d1c08` | v2.0 ilk yayın — `train.py` eşiği geçti (accuracy 0.8333, recall 0.9091, bkz. `model/config.json`). Yalnız sentetik veriyle eğitildi (`n_gercek_oturum=0`); 15 gerçek oturum toplanınca `train.py` yeniden çalıştırılıp yeni bir commit olarak yayınlanmalı. |
 
 ## Bonus — kendi sunucunuz
 
