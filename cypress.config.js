@@ -6,9 +6,9 @@ module.exports = defineConfig({
     supportFile: false,
     video: true,
     videosFolder: "cypress/videos",
-    // Bu makinede arka planda ağır uygulamalar (ör. yerel LLM, oyun launcher'ı) çalışırken
-    // Electron'un basit bir tıklama sonrası DOM güncellemesi bile birkaç saniye gecikebiliyor;
-    // varsayılan 4000ms gerçek bir mantık hatası yokken de testleri flaky yapıyordu.
-    defaultCommandTimeout: 20000,
+    // Yerel makinede arka plan yükü altında varsayılan 4000ms bazen dar geliyor; model
+    // yüklemesi gibi gerçekten yavaş adımlar zaten kendi dosyalarında (model.cy.js) daha
+    // yüksek bir timeout kullanıyor, bu sadece genel bir güvenlik payı.
+    defaultCommandTimeout: 8000,
   },
 });

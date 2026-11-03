@@ -140,10 +140,14 @@ süreci şeffaf bırakmak için nerede/nasıl kullanıldığı aşağıda:
    (accuracy≥0.70) geçemedi — **elle düzeltme**: oturum sayısı 40'a çıkarıldı ve persona
    gürültüsü (`std`) azaltıldı; `random_state`/seed hiç değiştirilmedi (bkz. `SINAV_TASARIMI.md`
    — tohum avcılığı yerine veri tasarımı iyileştirildi).
-3. **Web entegrasyonu + hata ayıklama:** `onnxruntime-web` entegrasyonunda iki gerçek bug
+3. **Web entegrasyonu + hata ayıklama:** `onnxruntime-web` entegrasyonunda üç gerçek bug
    Cypress ile bulunup düzeltildi: (a) `openKarar`'da `kararOnaylandi` bayrağının sıfırlanmaması
-   (Karar 2'den sonra seçenekler kilitleniyordu), (b) eksik `wasmPaths`/`numThreads` ayarı ve
-   Cypress'in varsayılan 4s komut zaman aşımının model yüklenme süresinden (~5-7s) kısa kalması.
+   (Karar 2'den sonra seçenekler kilitleniyordu); (b) eksik `wasmPaths`/`numThreads` ayarı ve
+   Cypress'in varsayılan 4s komut zaman aşımının model yüklenme süresinden (~5-7s) kısa kalması;
+   (c) **en önemlisi** — Karar 2→3 geçişinin model çağrısını `await` ile bloke etmesi: bu,
+   seviyeden bağımsız **her oyuncuyu** gereksiz yere birkaç saniye bekletiyordu (gerçek bir UX
+   hatası, yalnız test artefaktı değil). Düzeltme: geçiş artık anında açılır (v1 davranışıyla),
+   model sonucu gelince (hâlâ Karar 3'teyse) ipucu/süre canlı güncellenir (`karar3OverrideCanliUygula`).
 4. **Cypress testleri:** `model.cy.js`'deki "veri-odaklı seçim" testi ilk yazımda anlık/düşünmeden
    tıklamayı simüle ediyordu; model karar süresini de kullandığından yanlış pozitif üretti —
    **elle düzeltme**: test, modelin sınırları (`model/README.md`) ışığında gerçekçi bir

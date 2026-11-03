@@ -332,6 +332,10 @@ document.getElementById("submit-reflection").addEventListener("click", () => {
 
   if (index === 1) {
     karar3OverridePromise = window.modelRiskTahmini({ seviye: state.seviye, log: state.log.slice() });
+    karar3OverridePromise.then((sonuc) => {
+      state.karar3Override = sonuc && sonuc.override;
+      karar3OverrideCanliUygula();
+    });
   }
 
   document.getElementById("reflection-box").classList.add("hidden");
@@ -339,14 +343,28 @@ document.getElementById("submit-reflection").addEventListener("click", () => {
   document.getElementById("tutor-box").classList.remove("hidden");
 });
 
-document.getElementById("continue-btn").addEventListener("click", async () => {
+// Model, Karar 2 onaylanır onaylanmaz arka planda çalışmaya başlar (bkz. submit-reflection) ama
+// bu geçişi BLOKLAMAZ — Karar 3 hemen v1 (seviyeye bağlı) davranışıyla açılır; model sonucu
+// gelince (hâlâ Karar 3'teyse) ipucu/süre canlı güncellenir. Böylece her oyuncu modelin
+// yüklenmesini beklemek zorunda kalmaz.
+function karar3OverrideCanliUygula() {
+  if (state.kararIndex !== 2) return;
+  const override = state.karar3Override;
+  if (!override) return;
+  const hintBox = document.getElementById("hint-box");
+  if (override.ipucuZorla && hintBox.classList.contains("hidden")) {
+    hintBox.textContent = KARARLAR[2].hint;
+    hintBox.classList.remove("hidden");
+  }
+  if (override.sureKalksin) {
+    stopTimer();
+    document.getElementById("timer").classList.add("hidden");
+  }
+}
+
+document.getElementById("continue-btn").addEventListener("click", () => {
   const nextIndex = state.kararIndex + 1;
   if (nextIndex < KARARLAR.length) {
-    if (nextIndex === 2 && karar3OverridePromise) {
-      const sonuc = await karar3OverridePromise;
-      state.karar3Override = sonuc && sonuc.override;
-      karar3OverridePromise = null;
-    }
     state.kararIndex = nextIndex;
     saveState();
     openKarar(nextIndex);
