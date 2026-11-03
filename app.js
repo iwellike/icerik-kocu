@@ -83,9 +83,111 @@ function saveState() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
 }
 
-let state = loadState() || { seviye: null, rol: null, hedef: null, score: 0, kararIndex: 0 };
+function randomHex(nBytes) {
+  const arr = new Uint8Array(nBytes);
+  (window.crypto || window.msCrypto).getRandomValues(arr);
+  return Array.from(arr, (b) => b.toString(16).padStart(2, "0")).join("");
+}
+
+function yeniState() {
+  return {
+    seviye: null,
+    rol: null,
+    hedef: null,
+    score: 0,
+    kararIndex: 0,
+    oturumId: null,
+    riskliSayisi: 0,
+    log: [],
+    karar3Override: null,
+  };
+}
+
+let state = loadState() || yeniState();
 let timerInterval = null;
 let pendingChoice = null;
+let kararAcilisZamani = 0;
+let kararDegisiklikSayisi = 0;
+
+// model.onnx: girdi 'input' float32 [1,5] = [seviye_deneyimli, sahne_no, karar_suresi_sn,
+// karar_degisikligi_sayisi, riskli_sayisi_simdiye_kadar] (bkz. model/config.json → features).
+// Yerel/Cypress: relatif yol. Yayından sonra HF commit URL'sine sabitlenir (bkz. RELEASE.md).
+const MODEL_URL = "model/model.onnx";
+const MODEL_ESIK = 0.5;
+let ortSessionPromise = null;
+
+function ortOturumuAl() {
+  if (!ortSessionPromise) {
+    // COOP/COEP başlıkları yok (basit statik sunucu) → cross-origin isolation kapalı;
+    // tek iş parçacığına zorlamak, aksi halde sessizce askıda kalabilen worker/thread
+    // başlatma denemesini engeller.
+    ort.env.wasm.wasmPaths = "https://cdn.jsdelivr.net/npm/onnxruntime-web@1.22.0/dist/";
+    ort.env.wasm.numThreads = 1;
+    ortSessionPromise = ort.InferenceSession.create(MODEL_URL);
+  }
+  return ortSessionPromise;
+}
+
+// Karar 2 onaylandığında çağrılır (bkz. submit-reflection). Dönen `override`, Karar 3'ün
+// ipucu/süre-baskısı davranışını değiştirir (eşik: MODEL_ESIK = 0.5, bkz. spec.md).
+async function modelRiskTahminiONNX(ozellikler) {
+  const son = ozellikler.log[ozellikler.log.length - 1]; // sahne_no=2 satırı
+  const x = new ort.Tensor(
+    "float32",
+    Float32Array.from([
+      ozellikler.seviye === "Deneyimliyim" ? 1 : 0,
+      son.sahne_no,
+      son.karar_suresi_sn,
+      son.karar_degisikligi_sayisi,
+      son.riskli_sayisi_simdiye_kadar,
+    ]),
+    [1, 5]
+  );
+  try {
+    const oturum = await ortOturumuAl();
+    const cikti = await oturum.run({ input: x });
+    const p = cikti.probabilities.data[1];
+    const pEl = document.getElementById("model-p");
+    if (pEl) pEl.textContent = p.toFixed(6);
+    const override = p >= MODEL_ESIK ? { ipucuZorla: true, sureKalksin: true } : null;
+    return { kotuSonRiski: p, override };
+  } catch (e) {
+    console.warn("model yüklenemedi, v1 davranışı (seviyeye bağlı) sürdürülüyor:", e);
+    return { kotuSonRiski: null, override: null };
+  }
+}
+
+async function modelRiskTahminiVarsayilan(_ozellikler) {
+  return { kotuSonRiski: null, override: null };
+}
+
+window.modelRiskTahmini = typeof ort !== "undefined" ? modelRiskTahminiONNX : modelRiskTahminiVarsayilan;
+
+// Diferansiyel test (parite) için test seam'i: ham bir özellik vektörünü doğrudan aynı
+// model.onnx oturumuyla çalıştırır. bkz. cypress/e2e/model.cy.js ve tests/parite.py.
+window.__onnxTahminEt = async (vektor) => {
+  const oturum = await ortOturumuAl();
+  const x = new ort.Tensor("float32", Float32Array.from(vektor), [1, vektor.length]);
+  const cikti = await oturum.run({ input: x });
+  return cikti.probabilities.data[1];
+};
+
+function gercekOturumMu() {
+  return !window.Cypress;
+}
+
+function oturumuSunucuyaGonder() {
+  if (!gercekOturumMu() || state.log.length === 0) return;
+  const kotuSon = state.score >= 2 ? 0 : 1;
+  const satirlar = state.log.map((row) => ({ ...row, kotu_son: kotuSon }));
+  fetch("/api/oturum", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ satirlar }),
+  }).catch(() => {
+    /* sunucu yoksa (ör. statik barındırma) sessizce yok say */
+  });
+}
 
 function showScreen(id) {
   document.querySelectorAll(".screen").forEach((s) => s.classList.remove("active"));
@@ -105,6 +207,10 @@ document.querySelectorAll(".choice-btn[data-field]").forEach((btn) => {
 document.getElementById("start-btn").addEventListener("click", () => {
   state.score = 0;
   state.kararIndex = 0;
+  state.oturumId = randomHex(4);
+  state.riskliSayisi = 0;
+  state.log = [];
+  state.karar3Override = null;
   saveState();
   openKarar(0);
 });
@@ -117,7 +223,12 @@ function stopTimer() {
 function openKarar(index) {
   stopTimer();
   pendingChoice = null;
+  kararOnaylandi = false;
+  kararDegisiklikSayisi = 0;
+  kararSuresiSn = null;
+  kararAcilisZamani = performance.now();
   const k = KARARLAR[index];
+  const override = index === 2 ? state.karar3Override : null;
 
   document.getElementById("karar-step").textContent = `${index + 1}/3`;
   const introEl = document.getElementById("intro-text");
@@ -131,7 +242,7 @@ function openKarar(index) {
   document.getElementById("karar-context").textContent = k.context;
 
   const hintBox = document.getElementById("hint-box");
-  if (state.seviye === "Yeni başlıyorum") {
+  if (state.seviye === "Yeni başlıyorum" || (override && override.ipucuZorla)) {
     hintBox.textContent = k.hint;
     hintBox.classList.remove("hidden");
   } else {
@@ -156,7 +267,7 @@ function openKarar(index) {
   document.getElementById("tutor-box").classList.add("hidden");
 
   const timerEl = document.getElementById("timer");
-  if (state.seviye === "Deneyimliyim") {
+  if (state.seviye === "Deneyimliyim" && !(override && override.sureKalksin)) {
     let remaining = TIMER_SECONDS;
     timerEl.textContent = `${remaining}s`;
     timerEl.classList.remove("hidden");
@@ -175,8 +286,17 @@ function openKarar(index) {
   showScreen("screen-karar");
 }
 
+let kararOnaylandi = false;
+let kararSuresiSn = null;
+let karar3OverridePromise = null;
+
 function chooseOption(index, opt) {
-  if (pendingChoice) return;
+  if (kararOnaylandi) return;
+  if (!pendingChoice) {
+    kararSuresiSn = (performance.now() - kararAcilisZamani) / 1000;
+  } else if (pendingChoice.key !== opt.key) {
+    kararDegisiklikSayisi += 1;
+  }
   pendingChoice = opt;
   stopTimer();
 
@@ -193,18 +313,40 @@ document.getElementById("reflection-input").addEventListener("input", (e) => {
 document.getElementById("submit-reflection").addEventListener("click", () => {
   if (!pendingChoice) return;
   const index = state.kararIndex;
+  kararOnaylandi = true;
 
   if (!pendingChoice.risky) state.score += 1;
+  else state.riskliSayisi += 1;
+  state.log.push({
+    oturum_id: state.oturumId,
+    kaynak: "gercek",
+    seviye: state.seviye,
+    rol: state.rol,
+    hedef: state.hedef,
+    sahne_no: index + 1,
+    karar_suresi_sn: Math.round(Math.min(kararSuresiSn ?? TIMER_SECONDS, TIMER_SECONDS) * 10) / 10,
+    karar_degisikligi_sayisi: kararDegisiklikSayisi,
+    riskli_sayisi_simdiye_kadar: state.riskliSayisi,
+  });
   saveState();
+
+  if (index === 1) {
+    karar3OverridePromise = window.modelRiskTahmini({ seviye: state.seviye, log: state.log.slice() });
+  }
 
   document.getElementById("reflection-box").classList.add("hidden");
   document.getElementById("tutor-text").textContent = pendingChoice.tutor;
   document.getElementById("tutor-box").classList.remove("hidden");
 });
 
-document.getElementById("continue-btn").addEventListener("click", () => {
+document.getElementById("continue-btn").addEventListener("click", async () => {
   const nextIndex = state.kararIndex + 1;
   if (nextIndex < KARARLAR.length) {
+    if (nextIndex === 2 && karar3OverridePromise) {
+      const sonuc = await karar3OverridePromise;
+      state.karar3Override = sonuc && sonuc.override;
+      karar3OverridePromise = null;
+    }
     state.kararIndex = nextIndex;
     saveState();
     openKarar(nextIndex);
@@ -218,12 +360,13 @@ function showSon() {
   document.getElementById("son-title").textContent = result.title;
   document.getElementById("son-text").textContent = result.text;
   document.getElementById("son-score").textContent = `Puan: ${state.score}/3`;
+  oturumuSunucuyaGonder();
   showScreen("screen-son");
 }
 
 document.getElementById("restart-btn").addEventListener("click", () => {
   localStorage.removeItem(STORAGE_KEY);
-  state = { seviye: null, rol: null, hedef: null, score: 0, kararIndex: 0 };
+  state = yeniState();
   document.querySelectorAll(".choice-btn[data-field]").forEach((b) => b.classList.remove("selected"));
   document.getElementById("start-btn").disabled = true;
   showScreen("screen-onboarding");

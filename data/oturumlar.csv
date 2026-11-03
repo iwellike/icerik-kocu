@@ -1,0 +1,121 @@
+oturum_id,kaynak,seviye,rol,hedef,sahne_no,karar_suresi_sn,karar_degisikligi_sayisi,riskli_sayisi_simdiye_kadar,kotu_son
+0829aa03,sentetik,Yeni başlıyorum,Bireysel içerik üretici,Erişim/takipçi büyütmek,1,11.1,1,0,1
+0829aa03,sentetik,Yeni başlıyorum,Bireysel içerik üretici,Erişim/takipçi büyütmek,2,13.8,1,1,1
+0829aa03,sentetik,Yeni başlıyorum,Bireysel içerik üretici,Erişim/takipçi büyütmek,3,14.1,2,2,1
+e0f69303,sentetik,Deneyimliyim,Bireysel içerik üretici,Erişim/takipçi büyütmek,1,7.3,0,1,1
+e0f69303,sentetik,Deneyimliyim,Bireysel içerik üretici,Erişim/takipçi büyütmek,2,5.9,0,2,1
+e0f69303,sentetik,Deneyimliyim,Bireysel içerik üretici,Erişim/takipçi büyütmek,3,5.9,1,3,1
+a84db2fe,sentetik,Deneyimliyim,Marka/ajans yöneticisi,Güven ve itibar kazanmak,1,9.1,1,0,0
+a84db2fe,sentetik,Deneyimliyim,Marka/ajans yöneticisi,Güven ve itibar kazanmak,2,9.1,1,0,0
+a84db2fe,sentetik,Deneyimliyim,Marka/ajans yöneticisi,Güven ve itibar kazanmak,3,5.6,0,1,0
+a28e0607,sentetik,Deneyimliyim,Bireysel içerik üretici,Güven ve itibar kazanmak,1,9.0,1,1,1
+a28e0607,sentetik,Deneyimliyim,Bireysel içerik üretici,Güven ve itibar kazanmak,2,8.9,1,1,1
+a28e0607,sentetik,Deneyimliyim,Bireysel içerik üretici,Güven ve itibar kazanmak,3,9.0,1,2,1
+f5c43cc0,sentetik,Yeni başlıyorum,Marka/ajans yöneticisi,Erişim/takipçi büyütmek,1,9.2,0,1,1
+f5c43cc0,sentetik,Yeni başlıyorum,Marka/ajans yöneticisi,Erişim/takipçi büyütmek,2,11.2,0,1,1
+f5c43cc0,sentetik,Yeni başlıyorum,Marka/ajans yöneticisi,Erişim/takipçi büyütmek,3,14.4,2,2,1
+4892e426,sentetik,Deneyimliyim,Bireysel içerik üretici,Güven ve itibar kazanmak,1,7.3,1,1,1
+4892e426,sentetik,Deneyimliyim,Bireysel içerik üretici,Güven ve itibar kazanmak,2,6.5,0,2,1
+4892e426,sentetik,Deneyimliyim,Bireysel içerik üretici,Güven ve itibar kazanmak,3,4.9,0,3,1
+e569edef,sentetik,Yeni başlıyorum,Marka/ajans yöneticisi,Erişim/takipçi büyütmek,1,11.4,1,0,1
+e569edef,sentetik,Yeni başlıyorum,Marka/ajans yöneticisi,Erişim/takipçi büyütmek,2,6.1,0,1,1
+e569edef,sentetik,Yeni başlıyorum,Marka/ajans yöneticisi,Erişim/takipçi büyütmek,3,9.6,2,2,1
+69ea1ea9,sentetik,Yeni başlıyorum,Bireysel içerik üretici,Erişim/takipçi büyütmek,1,6.6,0,1,0
+69ea1ea9,sentetik,Yeni başlıyorum,Bireysel içerik üretici,Erişim/takipçi büyütmek,2,13.2,1,1,0
+69ea1ea9,sentetik,Yeni başlıyorum,Bireysel içerik üretici,Erişim/takipçi büyütmek,3,8.5,1,1,0
+ae6512b2,sentetik,Deneyimliyim,Marka/ajans yöneticisi,Güven ve itibar kazanmak,1,10.0,0,0,0
+ae6512b2,sentetik,Deneyimliyim,Marka/ajans yöneticisi,Güven ve itibar kazanmak,2,11.8,1,0,0
+ae6512b2,sentetik,Deneyimliyim,Marka/ajans yöneticisi,Güven ve itibar kazanmak,3,13.0,2,0,0
+03a8c7ec,sentetik,Deneyimliyim,Bireysel içerik üretici,Erişim/takipçi büyütmek,1,12.1,1,1,0
+03a8c7ec,sentetik,Deneyimliyim,Bireysel içerik üretici,Erişim/takipçi büyütmek,2,9.6,0,1,0
+03a8c7ec,sentetik,Deneyimliyim,Bireysel içerik üretici,Erişim/takipçi büyütmek,3,10.6,1,1,0
+29df8ea8,sentetik,Deneyimliyim,Bireysel içerik üretici,Güven ve itibar kazanmak,1,8.0,0,1,1
+29df8ea8,sentetik,Deneyimliyim,Bireysel içerik üretici,Güven ve itibar kazanmak,2,8.6,1,2,1
+29df8ea8,sentetik,Deneyimliyim,Bireysel içerik üretici,Güven ve itibar kazanmak,3,11.9,0,3,1
+14303971,sentetik,Deneyimliyim,Marka/ajans yöneticisi,Güven ve itibar kazanmak,1,11.0,2,0,0
+14303971,sentetik,Deneyimliyim,Marka/ajans yöneticisi,Güven ve itibar kazanmak,2,12.2,1,1,0
+14303971,sentetik,Deneyimliyim,Marka/ajans yöneticisi,Güven ve itibar kazanmak,3,11.9,2,1,0
+15f0a007,sentetik,Yeni başlıyorum,Marka/ajans yöneticisi,Erişim/takipçi büyütmek,1,8.2,1,1,1
+15f0a007,sentetik,Yeni başlıyorum,Marka/ajans yöneticisi,Erişim/takipçi büyütmek,2,9.2,1,1,1
+15f0a007,sentetik,Yeni başlıyorum,Marka/ajans yöneticisi,Erişim/takipçi büyütmek,3,11.5,1,2,1
+eee48d73,sentetik,Yeni başlıyorum,Bireysel içerik üretici,Erişim/takipçi büyütmek,1,12.3,1,0,0
+eee48d73,sentetik,Yeni başlıyorum,Bireysel içerik üretici,Erişim/takipçi büyütmek,2,14.1,2,0,0
+eee48d73,sentetik,Yeni başlıyorum,Bireysel içerik üretici,Erişim/takipçi büyütmek,3,14.1,2,0,0
+728396ab,sentetik,Yeni başlıyorum,Marka/ajans yöneticisi,Erişim/takipçi büyütmek,1,4.6,0,1,1
+728396ab,sentetik,Yeni başlıyorum,Marka/ajans yöneticisi,Erişim/takipçi büyütmek,2,8.2,1,1,1
+728396ab,sentetik,Yeni başlıyorum,Marka/ajans yöneticisi,Erişim/takipçi büyütmek,3,8.3,0,2,1
+8f8ce1b1,sentetik,Deneyimliyim,Marka/ajans yöneticisi,Erişim/takipçi büyütmek,1,12.7,1,0,1
+8f8ce1b1,sentetik,Deneyimliyim,Marka/ajans yöneticisi,Erişim/takipçi büyütmek,2,10.0,1,1,1
+8f8ce1b1,sentetik,Deneyimliyim,Marka/ajans yöneticisi,Erişim/takipçi büyütmek,3,10.2,2,2,1
+ce172a79,sentetik,Deneyimliyim,Bireysel içerik üretici,Erişim/takipçi büyütmek,1,11.1,2,1,0
+ce172a79,sentetik,Deneyimliyim,Bireysel içerik üretici,Erişim/takipçi büyütmek,2,13.4,2,1,0
+ce172a79,sentetik,Deneyimliyim,Bireysel içerik üretici,Erişim/takipçi büyütmek,3,10.3,2,1,0
+13cd3647,sentetik,Yeni başlıyorum,Bireysel içerik üretici,Güven ve itibar kazanmak,1,15.2,1,0,0
+13cd3647,sentetik,Yeni başlıyorum,Bireysel içerik üretici,Güven ve itibar kazanmak,2,11.6,2,0,0
+13cd3647,sentetik,Yeni başlıyorum,Bireysel içerik üretici,Güven ve itibar kazanmak,3,10.5,1,0,0
+1442dd80,sentetik,Deneyimliyim,Bireysel içerik üretici,Erişim/takipçi büyütmek,1,14.6,1,0,1
+1442dd80,sentetik,Deneyimliyim,Bireysel içerik üretici,Erişim/takipçi büyütmek,2,13.1,2,1,1
+1442dd80,sentetik,Deneyimliyim,Bireysel içerik üretici,Erişim/takipçi büyütmek,3,12.8,1,2,1
+3e3dfa7e,sentetik,Yeni başlıyorum,Bireysel içerik üretici,Güven ve itibar kazanmak,1,6.4,1,1,0
+3e3dfa7e,sentetik,Yeni başlıyorum,Bireysel içerik üretici,Güven ve itibar kazanmak,2,9.0,2,1,0
+3e3dfa7e,sentetik,Yeni başlıyorum,Bireysel içerik üretici,Güven ve itibar kazanmak,3,9.6,0,1,0
+f1542f47,sentetik,Yeni başlıyorum,Marka/ajans yöneticisi,Erişim/takipçi büyütmek,1,8.1,1,1,1
+f1542f47,sentetik,Yeni başlıyorum,Marka/ajans yöneticisi,Erişim/takipçi büyütmek,2,4.8,1,2,1
+f1542f47,sentetik,Yeni başlıyorum,Marka/ajans yöneticisi,Erişim/takipçi büyütmek,3,8.1,1,3,1
+941bbf81,sentetik,Deneyimliyim,Bireysel içerik üretici,Erişim/takipçi büyütmek,1,12.4,0,1,0
+941bbf81,sentetik,Deneyimliyim,Bireysel içerik üretici,Erişim/takipçi büyütmek,2,9.9,0,1,0
+941bbf81,sentetik,Deneyimliyim,Bireysel içerik üretici,Erişim/takipçi büyütmek,3,7.1,0,1,0
+a9bf723e,sentetik,Yeni başlıyorum,Bireysel içerik üretici,Erişim/takipçi büyütmek,1,14.6,2,0,0
+a9bf723e,sentetik,Yeni başlıyorum,Bireysel içerik üretici,Erişim/takipçi büyütmek,2,8.5,1,0,0
+a9bf723e,sentetik,Yeni başlıyorum,Bireysel içerik üretici,Erişim/takipçi büyütmek,3,9.2,2,0,0
+b6f19bb4,sentetik,Deneyimliyim,Bireysel içerik üretici,Güven ve itibar kazanmak,1,9.6,2,0,0
+b6f19bb4,sentetik,Deneyimliyim,Bireysel içerik üretici,Güven ve itibar kazanmak,2,10.5,2,1,0
+b6f19bb4,sentetik,Deneyimliyim,Bireysel içerik üretici,Güven ve itibar kazanmak,3,10.5,0,1,0
+258f4cc8,sentetik,Yeni başlıyorum,Marka/ajans yöneticisi,Güven ve itibar kazanmak,1,8.5,1,0,0
+258f4cc8,sentetik,Yeni başlıyorum,Marka/ajans yöneticisi,Güven ve itibar kazanmak,2,11.8,2,1,0
+258f4cc8,sentetik,Yeni başlıyorum,Marka/ajans yöneticisi,Güven ve itibar kazanmak,3,10.0,3,1,0
+87c503bb,sentetik,Deneyimliyim,Bireysel içerik üretici,Erişim/takipçi büyütmek,1,14.7,1,0,0
+87c503bb,sentetik,Deneyimliyim,Bireysel içerik üretici,Erişim/takipçi büyütmek,2,14.8,1,0,0
+87c503bb,sentetik,Deneyimliyim,Bireysel içerik üretici,Erişim/takipçi büyütmek,3,9.9,3,0,0
+d03c6845,sentetik,Yeni başlıyorum,Bireysel içerik üretici,Erişim/takipçi büyütmek,1,8.9,1,0,0
+d03c6845,sentetik,Yeni başlıyorum,Bireysel içerik üretici,Erişim/takipçi büyütmek,2,11.9,1,0,0
+d03c6845,sentetik,Yeni başlıyorum,Bireysel içerik üretici,Erişim/takipçi büyütmek,3,13.4,1,0,0
+325dd706,sentetik,Yeni başlıyorum,Bireysel içerik üretici,Erişim/takipçi büyütmek,1,11.7,2,0,0
+325dd706,sentetik,Yeni başlıyorum,Bireysel içerik üretici,Erişim/takipçi büyütmek,2,13.0,3,0,0
+325dd706,sentetik,Yeni başlıyorum,Bireysel içerik üretici,Erişim/takipçi büyütmek,3,14.9,2,0,0
+6d7c8bab,sentetik,Yeni başlıyorum,Bireysel içerik üretici,Erişim/takipçi büyütmek,1,10.7,1,1,1
+6d7c8bab,sentetik,Yeni başlıyorum,Bireysel içerik üretici,Erişim/takipçi büyütmek,2,11.1,1,2,1
+6d7c8bab,sentetik,Yeni başlıyorum,Bireysel içerik üretici,Erişim/takipçi büyütmek,3,5.6,1,3,1
+168c8745,sentetik,Deneyimliyim,Bireysel içerik üretici,Güven ve itibar kazanmak,1,12.7,2,0,0
+168c8745,sentetik,Deneyimliyim,Bireysel içerik üretici,Güven ve itibar kazanmak,2,14.3,2,1,0
+168c8745,sentetik,Deneyimliyim,Bireysel içerik üretici,Güven ve itibar kazanmak,3,14.7,1,1,0
+d80c75b0,sentetik,Deneyimliyim,Bireysel içerik üretici,Erişim/takipçi büyütmek,1,11.6,2,0,1
+d80c75b0,sentetik,Deneyimliyim,Bireysel içerik üretici,Erişim/takipçi büyütmek,2,8.7,1,1,1
+d80c75b0,sentetik,Deneyimliyim,Bireysel içerik üretici,Erişim/takipçi büyütmek,3,9.7,1,2,1
+e922b098,sentetik,Yeni başlıyorum,Bireysel içerik üretici,Güven ve itibar kazanmak,1,13.6,1,0,0
+e922b098,sentetik,Yeni başlıyorum,Bireysel içerik üretici,Güven ve itibar kazanmak,2,10.3,2,0,0
+e922b098,sentetik,Yeni başlıyorum,Bireysel içerik üretici,Güven ve itibar kazanmak,3,11.4,1,0,0
+a9f911aa,sentetik,Deneyimliyim,Marka/ajans yöneticisi,Güven ve itibar kazanmak,1,15.1,2,0,0
+a9f911aa,sentetik,Deneyimliyim,Marka/ajans yöneticisi,Güven ve itibar kazanmak,2,17.0,2,0,0
+a9f911aa,sentetik,Deneyimliyim,Marka/ajans yöneticisi,Güven ve itibar kazanmak,3,12.9,2,0,0
+34b54e03,sentetik,Deneyimliyim,Bireysel içerik üretici,Erişim/takipçi büyütmek,1,7.7,1,1,1
+34b54e03,sentetik,Deneyimliyim,Bireysel içerik üretici,Erişim/takipçi büyütmek,2,2.9,0,2,1
+34b54e03,sentetik,Deneyimliyim,Bireysel içerik üretici,Erişim/takipçi büyütmek,3,5.3,1,3,1
+021f884f,sentetik,Yeni başlıyorum,Marka/ajans yöneticisi,Erişim/takipçi büyütmek,1,9.7,1,1,1
+021f884f,sentetik,Yeni başlıyorum,Marka/ajans yöneticisi,Erişim/takipçi büyütmek,2,11.4,0,2,1
+021f884f,sentetik,Yeni başlıyorum,Marka/ajans yöneticisi,Erişim/takipçi büyütmek,3,9.8,1,2,1
+f1786817,sentetik,Deneyimliyim,Marka/ajans yöneticisi,Güven ve itibar kazanmak,1,4.4,1,0,1
+f1786817,sentetik,Deneyimliyim,Marka/ajans yöneticisi,Güven ve itibar kazanmak,2,6.1,1,1,1
+f1786817,sentetik,Deneyimliyim,Marka/ajans yöneticisi,Güven ve itibar kazanmak,3,10.6,1,2,1
+aae76c51,sentetik,Yeni başlıyorum,Bireysel içerik üretici,Güven ve itibar kazanmak,1,8.5,1,1,1
+aae76c51,sentetik,Yeni başlıyorum,Bireysel içerik üretici,Güven ve itibar kazanmak,2,12.2,0,2,1
+aae76c51,sentetik,Yeni başlıyorum,Bireysel içerik üretici,Güven ve itibar kazanmak,3,12.1,1,3,1
+bbb8e17c,sentetik,Deneyimliyim,Bireysel içerik üretici,Erişim/takipçi büyütmek,1,14.8,0,1,1
+bbb8e17c,sentetik,Deneyimliyim,Bireysel içerik üretici,Erişim/takipçi büyütmek,2,13.5,2,2,1
+bbb8e17c,sentetik,Deneyimliyim,Bireysel içerik üretici,Erişim/takipçi büyütmek,3,14.6,3,2,1
+dfdee7ac,sentetik,Yeni başlıyorum,Bireysel içerik üretici,Güven ve itibar kazanmak,1,16.5,2,0,0
+dfdee7ac,sentetik,Yeni başlıyorum,Bireysel içerik üretici,Güven ve itibar kazanmak,2,13.6,2,0,0
+dfdee7ac,sentetik,Yeni başlıyorum,Bireysel içerik üretici,Güven ve itibar kazanmak,3,13.8,1,0,0
+d3b436f5,sentetik,Deneyimliyim,Marka/ajans yöneticisi,Erişim/takipçi büyütmek,1,9.6,1,0,0
+d3b436f5,sentetik,Deneyimliyim,Marka/ajans yöneticisi,Erişim/takipçi büyütmek,2,13.8,1,0,0
+d3b436f5,sentetik,Deneyimliyim,Marka/ajans yöneticisi,Erişim/takipçi büyütmek,3,11.3,1,0,0

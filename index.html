@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>İçerik Koçu — SE Primer</title>
 <link rel="stylesheet" href="style.css">
+<!-- v2: Karar 1-2'deki davranıştan "kötü son riski" tahmin eden küçük model, tarayıcıda. -->
+<script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.22.0/dist/ort.min.js"></script>
 </head>
 <body>
 <div class="phone">
@@ -42,6 +44,7 @@
     <div class="topbar">
       <span id="karar-step"></span>
       <span id="timer" class="timer hidden" data-cy="timer"></span>
+      <span id="model-p" class="hidden" data-cy="p"></span>
     </div>
     <div class="content">
       <p id="intro-text" class="situation hidden" data-cy="intro-text"></p>

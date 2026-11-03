@@ -42,6 +42,23 @@
 3. **Given** oyuncu 3 kararda da B (veri-odaklı) seçer, **When** son ekrana gelinir, **Then** puan 3 hesaplanır ve "Son A — İyi" gösterilir.
 4. **Given** oyuncu 3 kararda da A (riskli) seçer, **When** son ekrana gelinir, **Then** puan 0 hesaplanır, "Son B — Kötü" gösterilir ve mahremiyet ihlali nedeni metinde açıkça geçer.
 5. **Given** oyuncu bir karardan sonra yansımasını yazıp gönderir, **When** AI tutor yanıt üretir, **Then** yanıt hangi seçeneğin doğru olduğunu söylemez, bir soru veya ipucu içerir.
+6. **Given** Karar 1 ve Karar 2'de oyuncu ikisinde de riskli (A) seçmiş, kararları hızlı vermiş (süre kısa) ve seçimini hiç değiştirmemiş, **When** model Karar 2 sonunda çalışır, **Then** "kötü son riski" tahmini eşiği geçer ve Karar 3 ekranı, seviye "Deneyimliyim" olsa da ipucu kutusunu gösterir ve süre sayacını gizler.
+7. **Given** Karar 1 ve Karar 2'de oyuncu ikisinde de veri-odaklı (B) seçmiş ve kararlarını düşünerek (anında değil, birkaç saniye içinde) vermiş, **When** model çalışır, **Then** risk tahmini eşiğin altında kalır ve Karar 3, seviyeye göre normal davranışını (ipucu/süre) sürdürür. (Not: karar süresi de bir özellik olduğundan, aynı B/B seçimiyle anlık/düşünmeden tıklama modelin riskli persona sinyaliyle karışabilir — bkz. `model/README.md` → sınırlar.)
+8. **Given** `train.py` ile eğitilen modelin held-out test setinde accuracy < 0.70 veya "kötü son" sınıfı recall < 0.60, **When** eğitim betiği tamamlanır, **Then** betik hata ile durur ve `model.onnx` / `config.json` üretilmez (yayınlanmaz).
+
+## v2 — Kötü Sona Gitme Riski Modeli
+
+Geçen haftaki uyum (ipucu/süre baskısı) yalnızca girişteki **seviye** cevabına bağlıydı — sabit bir kural. v2'de bu kurala, oyuncunun Karar 1 ve Karar 2'deki **gerçek davranışından öğrenen** küçük bir model ekleniyor.
+
+- **Girdi (satır = bir karar noktası, `sahne_no` = 1 veya 2):**
+  - `seviye` (Yeni başlıyorum / Deneyimliyim)
+  - `sahne_no` (1, 2)
+  - `karar_suresi_sn` — seçeneğe tıklamaya kadar geçen süre
+  - `karar_degisikligi_sayisi` — onaylamadan önce seçimini değiştirme sayısı
+  - `riskli_sayisi_simdiye_kadar` — bu karar dahil, o ana kadar seçilen riskli (A) seçenek sayısı
+- **Çıktı:** `kotu_son_riski` — `[0,1]` aralığında olasılık (sınıf: `kotu` / `iyi`), `config.json`'daki `classes` sırasına göre.
+- **Davranış değişikliği:** Karar 2 onaylandığında model, Karar 1+2 satırlarının ortalama/son özellikleriyle çalışır. Olasılık eşiği (`0.5`) geçilirse Karar 3 ekranı: ipucu kutusu **zorla açılır** (seviyeden bağımsız), süre sayacı **kaldırılır**, tutor'un yansıma sorusu daha derin bir uyarı cümlesiyle başlar. Eşik geçilmezse Karar 3, v1'deki seviyeye-bağlı davranışı değiştirmeden sürdürür.
+- **Eval metriği ve kabul eşiği (eğitimden önce sabit):** held-out test setinde **accuracy ≥ 0.70 VE "kötü son" sınıfı için recall ≥ 0.60**. Recall'a ayrıca eşik koyulmasının sebebi: riskli bir oyuncuyu "iyi gidiyor" sanıp hiç uyarmamak, modelin genel doğruluğundan daha maliyetli bir hata.
 
 ## Akış Şeması
 

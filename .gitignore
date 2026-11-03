@@ -1,3 +1,6 @@
 node_modules/
 cypress/screenshots/
 cypress/videos/
+.venv/
+__pycache__/
+*.pyc

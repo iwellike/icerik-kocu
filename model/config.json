@@ -1,0 +1,56 @@
+{
+  "title": "icerik-kocu-kotu-son-riski",
+  "description": "İçerik Koçu (The Primer v2) için küçük bir model: Karar 1 ve Karar 2'deki davranıştan (karar süresi, karar değiştirme, riskli seçim sayısı) oyuncunun senaryoyu 'Son B (Kötü)' ile bitirip bitirmeyeceğini tahmin eder. Yalnız bu oyun-içi primer için demo amaçlıdır; gerçek içerik/stratejik karar için KULLANILMAZ.",
+  "target": "kotu_son",
+  "class_labels": {
+    "0": "iyi son",
+    "1": "kötü son"
+  },
+  "features": [
+    {
+      "name": "seviye_deneyimli",
+      "label": "seviye_deneyimli",
+      "example": 0.0
+    },
+    {
+      "name": "sahne_no",
+      "label": "sahne_no",
+      "example": 2.0
+    },
+    {
+      "name": "karar_suresi_sn",
+      "label": "karar_suresi_sn",
+      "example": 11.8
+    },
+    {
+      "name": "karar_degisikligi_sayisi",
+      "label": "karar_degisikligi_sayisi",
+      "example": 2.0
+    },
+    {
+      "name": "riskli_sayisi_simdiye_kadar",
+      "label": "riskli_sayisi_simdiye_kadar",
+      "example": 1.0
+    }
+  ],
+  "classes": [
+    0,
+    1
+  ],
+  "metrics": {
+    "accuracy": 0.8333,
+    "recall_kotu_son": 0.9091,
+    "n_train": 56,
+    "n_test": 24,
+    "n_gercek_oturum": 0,
+    "n_sentetik_oturum": 40
+  },
+  "esikler": {
+    "accuracy": 0.7,
+    "recall_kotu_son": 0.6
+  },
+  "karar_esigi": 0.5,
+  "seed": 13,
+  "sklearn_version": "1.9.1",
+  "python_version": "3.12"
+}

@@ -1,0 +1,56 @@
+{
+  "model": "model/model.onnx",
+  "tolerans": 0.0001,
+  "ornekler": [
+    {
+      "girdi": {
+        "seviye_deneyimli": 0,
+        "sahne_no": 1,
+        "karar_suresi_sn": 3.0,
+        "karar_degisikligi_sayisi": 0,
+        "riskli_sayisi_simdiye_kadar": 0
+      },
+      "p_kotu_son": 0.731597
+    },
+    {
+      "girdi": {
+        "seviye_deneyimli": 0,
+        "sahne_no": 2,
+        "karar_suresi_sn": 25.0,
+        "karar_degisikligi_sayisi": 3,
+        "riskli_sayisi_simdiye_kadar": 1
+      },
+      "p_kotu_son": 0.03331
+    },
+    {
+      "girdi": {
+        "seviye_deneyimli": 1,
+        "sahne_no": 2,
+        "karar_suresi_sn": 4.5,
+        "karar_degisikligi_sayisi": 0,
+        "riskli_sayisi_simdiye_kadar": 2
+      },
+      "p_kotu_son": 0.975384
+    },
+    {
+      "girdi": {
+        "seviye_deneyimli": 1,
+        "sahne_no": 1,
+        "karar_suresi_sn": 18.0,
+        "karar_degisikligi_sayisi": 1,
+        "riskli_sayisi_simdiye_kadar": 0
+      },
+      "p_kotu_son": 0.115999
+    },
+    {
+      "girdi": {
+        "seviye_deneyimli": 0,
+        "sahne_no": 2,
+        "karar_suresi_sn": 6.0,
+        "karar_degisikligi_sayisi": 0,
+        "riskli_sayisi_simdiye_kadar": 1
+      },
+      "p_kotu_son": 0.798162
+    }
+  ]
+}
